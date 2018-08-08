@@ -6,10 +6,10 @@ This is a backend API for a Bowling house based on the Ten-pin bowling [https://
 
 **Available endpoints (localhost:8085)**
 
-* Start New Game /startNewGame
-* Show total Score (all players) /score/total
-* Show Score by player /score/{playerName}
-* Play a frame /play/
+* Start New Game /bowlinggame/startNewGame
+* Show total Score (all players) /bowlinggame/score/total
+* Show Score by player /bowlinggame/score/{playerName}
+* Play a frame /bowlinggame/play/
  
 
 **Here are some examples to show usage**
