@@ -11,8 +11,10 @@ public interface ConstantStrings {
     String GAME_CREATED = "A new game was created!";
     String GAME_OVER_THANKS = "GAME OVER, THANK YOU!!";
 
-    String GAME_RULES = "Request incorrect. X on first roll for Strike. / " +
-            "on second roll for Spare. Normal cases please use numbers";
+    String GAME_RULES = "Request incorrect.\nX on first roll for Strike. / " +
+            "on second roll for Spare. \n" +
+            "Up to the tenth frame use numbers and the sum of them should not be more then 10.\n" +
+            "Over the tenth frame you will have a last frame and Strike and Spare logic are not applicable.";
 
 
     String START_GAME_FIRST = "First start the Game!";
