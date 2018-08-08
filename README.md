@@ -45,7 +45,7 @@ play a new frame
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/plain' 'http://localhost:8085/bowlinggame/play/?rollsRequest.firstRoll=X&playerName=samuel'
 
 ```
-*Notes about playing/scoring system:* 
+*Notes about playing/scoring system (check application.properties):* 
 * by default every player has 10 frames
 * each frame as a maximum of 10 points
 * if the player scores a strike in the last frame, he gets two extra rolls or if he scores one Spare he gets one extra roll
