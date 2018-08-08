@@ -1,6 +1,7 @@
 package com.samuel.bowling.service;
 
 import com.samuel.bowling.exception.BadFrameRequestException;
+import com.samuel.bowling.exception.GameNotStartedException;
 import com.samuel.bowling.message.RollsRequest;
 import com.samuel.bowling.model.entity.Game;
 import org.junit.Assert;
@@ -188,8 +189,17 @@ public class GameServiceTest {
         Assert.assertEquals(7, gameService.getCurrentScore());
     }
 
+    @Test(expected = GameNotStartedException.class)
+    public void testGameNotStarted() {
+        gameService.setActiveGame(null);
+        RollsRequest rollsRequest = new RollsRequest("3", "4");
+
+        gameService.rollTheBall(rollsRequest);
+    }
+
     @Test(expected = BadFrameRequestException.class)
     public void testBadFrameRequestException() {
+
         gameService.setActiveGame(gameService.createNewGame());
         RollsRequest rollsRequest = new RollsRequest("7", "4");
 
