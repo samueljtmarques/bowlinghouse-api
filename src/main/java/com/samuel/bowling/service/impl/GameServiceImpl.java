@@ -94,11 +94,13 @@ public class GameServiceImpl implements GameService {
         }
         try {
             int valueFirstRoll = Integer.valueOf(rollsRequest.getFirstRoll());
+            //spares should be done by writing "/" on the second roll field
             if (!rollsRequest.getSecondRoll().equalsIgnoreCase("/")) {
 
                 int valueSecondRoll = Integer.valueOf(rollsRequest.getSecondRoll());
-                if (currentNumberOfFrames <= maxFrames && valueFirstRoll + valueSecondRoll == maxPoints) {
-                    //spares should be done by writing "/" on the second roll field
+                //until the tenth frame the sum of first and second roll should not be more then 10.
+                //in the extra frame the logic is based on number of rolls (one or two - spare or strike)
+                if (currentNumberOfFrames <= maxFrames && valueFirstRoll + valueSecondRoll > maxPoints) {
                     return false;
                 }
             }

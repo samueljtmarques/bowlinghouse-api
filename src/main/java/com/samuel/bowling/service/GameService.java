@@ -6,7 +6,7 @@ import com.samuel.bowling.model.entity.Game;
 public interface GameService {
     Game createNewGame();
 
-    void rollTheBall(RollsRequest frame);
+    void rollTheBall(RollsRequest rollsRequest);
 
     int getCurrentScore();
 
