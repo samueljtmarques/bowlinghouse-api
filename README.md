@@ -59,9 +59,12 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/pl
      
 *useful links*
 * https://spring.io/projects/spring-boot 
+* https://www.oracle.com/technetwork/java/javase/overview/java8-2100321.html
+* https://maven.apache.org/
 * https://swagger.io/
 * https://en.wikipedia.org/wiki/Test-driven_development
 * http://site.mockito.org/ 
 
 created by: Samuel Marques 
+
 Any question just send me a message, thanks!
