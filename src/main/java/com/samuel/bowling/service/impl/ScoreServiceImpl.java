@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 @Service
 public class ScoreServiceImpl implements ScoreService {
@@ -53,23 +55,13 @@ public class ScoreServiceImpl implements ScoreService {
 
     private int calculateStrike(List<FrameDto> framesPlayed, int index) {
         int strikePoints = 10;
-        int secondRoll = index + 1;
-        for (int actualRoll = index; actualRoll <= secondRoll; ++actualRoll) {
-            try {
-                FrameDto nextFrameDto = framesPlayed.get(actualRoll + 1);
-                if (nextFrameDto.isStrike()) {
-                    strikePoints += 10;
-                } else {
-                    if (actualRoll == secondRoll) {
-                        strikePoints += nextFrameDto.getFirstRoll();
-                    } else {
-                        strikePoints += sumFrameRolls(nextFrameDto);
-                        break;
-                    }
-                }
-            } catch (IndexOutOfBoundsException e) {
-                break;
-            }
+        FrameDto nextFrameDto = framesPlayed.get(index + 1);
+        if (nextFrameDto.isStrike()) {
+            strikePoints += 10;
+            FrameDto oneMoreRollAfterStrike = framesPlayed.get(index + 2);
+            strikePoints += oneMoreRollAfterStrike.getFirstRoll();
+        } else {
+            strikePoints += sumFrameRolls(nextFrameDto);
         }
         return strikePoints;
     }
