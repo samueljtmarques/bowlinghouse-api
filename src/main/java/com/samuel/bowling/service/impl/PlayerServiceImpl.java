@@ -41,17 +41,22 @@ public class PlayerServiceImpl implements PlayerService {
         players = new HashSet<>();
 
         int numberPlayers = newGameRequest.getNumberOfPlayers();
+
         if (numberPlayers > maxPlayersPerGame) {
             throw new PlayersBadRequestException(String.format(TOO_MANY_PLAYERS, maxPlayersPerGame));
         }
+
         int numberOfNames = newGameRequest.getNameOfThePlayers().size();
+
         if (numberOfNames != numberPlayers) {
             throw new PlayersBadRequestException(NAMES_NUMBER_MISMATCHING);
         }
-        for (String name : newGameRequest.getNameOfThePlayers()) {
-            players.add(new Player(name, gameService.createNewGame()));
-        }
+
+        newGameRequest.getNameOfThePlayers().stream()
+                .forEach(name -> players.add(new Player(name, gameService.createNewGame())));
+
         log.info(GAME_CREATED);
+
         return GAME_CREATED;
     }
 
@@ -78,18 +83,20 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<ScoreResponse> showTotalScore() {
         List<ScoreResponse> scoreResponses = new ArrayList<>();
+
         if (players == null || players.isEmpty()) {
             throw new GameNotStartedException(START_GAME_FIRST);
         }
 
-        for (Player player : players) {
-            Game playerGame = player.getGame();
-            scoreResponses.add(ScoreResponse.builder()
-                    .gameState(playerGame.getStateOfTheGame())
-                    .score(playerGame.getScore())
+        players.stream()
+                .forEach(player ->{
+                    scoreResponses.add(ScoreResponse.builder()
+                    .gameState(player.getGame().getStateOfTheGame())
+                    .score(player.getGame().getScore())
                     .playerName(player.getName())
                     .build());
-        }
+                });
+
         return scoreResponses;
     }
 
