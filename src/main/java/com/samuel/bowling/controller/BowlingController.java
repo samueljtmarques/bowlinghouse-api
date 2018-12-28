@@ -7,7 +7,6 @@ import com.samuel.bowling.exception.PlayersBadRequestException;
 import com.samuel.bowling.message.FrameRequest;
 import com.samuel.bowling.message.NewGameRequest;
 import com.samuel.bowling.message.ScoreResponse;
-import com.samuel.bowling.service.GameService;
 import com.samuel.bowling.service.PlayerService;
 import com.samuel.bowling.util.ControllerHttpUtil;
 import io.swagger.annotations.Api;

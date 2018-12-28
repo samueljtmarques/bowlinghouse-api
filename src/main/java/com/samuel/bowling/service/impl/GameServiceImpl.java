@@ -118,9 +118,9 @@ public class GameServiceImpl implements GameService {
             if (isASpare) {
                 return generateSpareFrame(rollsRequest.getFirstRoll());
             }
-            Integer firstRoll = Integer.valueOf(rollsRequest.getFirstRoll());
+            int firstRoll = Integer.valueOf(rollsRequest.getFirstRoll());
 
-            Integer secondRoll = Integer.valueOf(rollsRequest.getSecondRoll());
+            int secondRoll = Integer.valueOf(rollsRequest.getSecondRoll());
 
             return new FrameDto(firstRoll, secondRoll);
         }
